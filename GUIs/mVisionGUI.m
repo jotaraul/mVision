@@ -24,7 +24,7 @@ function varargout = mVisionGUI(varargin)
 
 % Edit the above text to modify the response to help mVisionGUI
 
-% Last Modified by GUIDE v2.5 14-Oct-2017 19:55:44
+% Last Modified by GUIDE v2.5 16-Oct-2017 10:29:11
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -114,14 +114,6 @@ function pushbutton5_Callback(hObject, eventdata, handles)
     segmentation;
 
 
-% --------------------------------------------------------------------
-function about_Callback(hObject, eventdata, handles)
-% hObject    handle to about (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-    showVersion;
-
 
 % --- Executes on button press in pushbutton6.
 function pushbutton6_Callback(hObject, eventdata, handles)
@@ -139,3 +131,18 @@ function pushbutton7_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     
     recognition;
+
+
+% --- Executes on mouse press over figure background.
+function figure1_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function version_Callback(hObject, eventdata, handles)
+% hObject    handle to version (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    showVersion;
