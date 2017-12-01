@@ -1,31 +1,31 @@
-
-% Evalua la función de decisión de una clase para un determinado punto (elemento).
+% Evaluates the decision function of a class for a given object (point)
 % 
-% > Entradas <
+% > Inputs <
 %
-% modo    : Modo de la función de decisión
-%			modo = 1 para distribución normal.
-%			modo = 2 para distribución normal en la que las probabilidades 
-%				     a priori son iguales (igual dispersión de clases). 
-%					 Distancia de Mahalanobis.
-%			modo = 3 para distribución normal con matriz de covarianzas 
-%					 isotrópica (no hay correlación entre las características).
-%					 Distancia euclidea.
-% xyObj   : Coordenadas del punto (elemento) a clasificar.
-% xyClase : Coordenadas de los puntos (elementos) pertenecientes a la clase.
-% covar   : Matriz de covarianza de los puntos (elementos) de la clase.
-% prob    : Probabilidad a priori de la clase.
+% mode    : Type of the decision function
+%			mode = 1 for the normal (gaussian) distribution. It uses the
+%                    Mahalanobis distance.
+%			mode = 2 for the normal (gaussian) distribution where the prior 
+%                    probabilities and the covariances are the same for all 
+%                    the classes. It uses the Mahalanobis distance.
+%			mode = 3 for the normal (gaussian) distribution with classes 
+%                    having the same prior probability and isotropic 
+%                    covariance matrices. Uses an Euclidean distance.
+% xyObj   : Coordinates of the object (point) to classify.
+% xyClass : Coordinates of the objects (elements) belonging to the class.
+% covar   : Covariance matrix of the objects (points) of the class.
+% prob    : Prior probability of the class.
 %
-% > Salidas <
+% > Outputs <
 %
-% d : Resultado de la evaluación de la función de decisión.
+% d : Evaluation result.
 %
-% > Notas <
+% > Notes <
 %
 % > En el caso de querer forzar el modo 2 (distancia de Mahalanobis)
 % se puede calcular la matriz de covarianza cov = A*A', donde A es la
-% matriz con todos los puntos de todas las clases, en la que la normalización
-% se ha realizado restando a cada posición de la matriz la media de la característica
+% matriz con todos los puntos de todas las clases, en la que la normalizaciï¿½n
+% se ha realizado restando a cada posiciï¿½n de la matriz la media de la caracterï¿½stica
 % a la que corresponda de los elementos que pertenezcan a esa misma clase. P.ej:
 % Puntos de la clase 1: x1 = [1 2] y1 = [2 5]
 % Puntos de la clase 2: x2 = [5 7] y2 = [1 3] 
@@ -40,7 +40,7 @@
 
 function d = evaluarFuncDecision(modo, xyObj, xyClase, covar, prob)
     
-	% Calculamos la media de cada característica
+	% Calculamos la media de cada caracterï¿½stica
     media = mean(xyClase,2);
     
     if modo == 1

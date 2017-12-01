@@ -130,6 +130,12 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 
     global userData;
     
+    % Delete possible ellipses
+    delete(userData.elipses);
+    userData.elipses = [];
+    
+    set(handles.info,'String', 'Results are shown on the right.'); 
+    
     num1 = size(userData.xy1);
     num2 = size(userData.xy2);
     num3 = size(userData.objeto);
@@ -149,10 +155,14 @@ function pushbutton1_Callback(hObject, eventdata, handles)
                if mahalanobis
 
                    if num1(2) ~= num2(2)
-                      set(handles.info,'String', 'The implementation of the Mahalanobis distance requires that the two classes have the same number of elements'); 
+                      set(handles.info,'String', 'This option requires that both classes have the same number of objects.'); 
                       ok = 0;
                    else    
                        [val,vec,covar] = autovalores([userData.xy1 ; userData.xy2], 0, 1);
+                       handle = error_ellipse(covar,mean(userData.xy1,2));
+                       userData.elipses = [userData.elipses handle];
+                       handle = error_ellipse(covar,mean(userData.xy2,2));
+                       userData.elipses = [userData.elipses handle];
                        d1 = evaluarFuncDecision(2,userData.objeto,userData.xy1,covar);
                        d2 = evaluarFuncDecision(2,userData.objeto,userData.xy2,covar);
                        set(handles.covar,'String', {'Covar. matrix',  ['[ ' ...
@@ -164,10 +174,18 @@ function pushbutton1_Callback(hObject, eventdata, handles)
                    end
 
                elseif euclidea               
-
+                   covar = [1 0; 0 1];
+                   handle = error_ellipse(covar.*100,mean(userData.xy1,2));
+                   userData.elipses = [userData.elipses handle];
+                   handle = error_ellipse(covar.*100,mean(userData.xy2,2));
+                   userData.elipses = [userData.elipses handle];
+                    
                    d1 = evaluarFuncDecision(3,userData.objeto,userData.xy1);
                    d2 = evaluarFuncDecision(3,userData.objeto,userData.xy2);
-
+                   
+                       set(handles.covar,'String', {'Covar. matrix',  ['[ ' ...
+                           num2str(covar(1,1)), ' ', num2str(covar(1,2)), ' ; ', ...
+                           num2str(covar(2,1)), ' ', num2str(covar(2,2)), ' ] '],});
                else
 
                    [val1,vec1,covar1] = autovalores(userData.xy1,0);
@@ -217,7 +235,7 @@ function quit_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    opc=questdlg('¿Do you quit the program?','QUIT','Yes','No','No');
+    opc=questdlg('ï¿½Do you quit the program?','QUIT','Yes','No','No');
     if strcmp(opc,'No')
         return;
     end

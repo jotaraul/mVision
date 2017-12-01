@@ -312,7 +312,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
     end
     
     % Si hemos detectado edges con sobel 3 activamos el poder ver la
-    % dirección y el módulo del vector gradiente
+    % direcciï¿½n y el mï¿½dulo del vector gradiente
     if option == 1
         set(handleNaxes2,'ButtonDownFcn',{@axes3_ButtonDownFcn,handles});
     else
@@ -344,7 +344,7 @@ function quit_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-    opc=questdlg('¿Do you want quit the program?','QUIT','Yes','No','No');
+    opc=questdlg('ï¿½Do you want quit the program?','QUIT','Yes','No','No');
     if strcmp(opc,'No')
         return;
     end
@@ -369,7 +369,7 @@ function about_Callback(hObject, eventdata, handles)
 
 % Funcion auxiliar
 function fileTypes = supportedImageTypes
-    % Función auxiliar: formatos de imágenes.
+    % Funciï¿½n auxiliar: formatos de imï¿½genes.
     fileTypes = {'*.jpg','JPEG (*.jpg)';'*.tif','TIFF (*.tif)';...
                 '*.bmp','Bitmap (*.bmp)';'*.*','All files (*.*)'};
 
@@ -384,7 +384,7 @@ function saveImage_Callback(hObject, eventdata, handles)
     if isempty(imRes), return, end
     
     %guardar como file
-    fileTypes = supportedImageTypes; % Función auxiliar.
+    fileTypes = supportedImageTypes; % Funciï¿½n auxiliar.
     [f,p] = uiputfile(fileTypes);
     
     if f==0, return, end
