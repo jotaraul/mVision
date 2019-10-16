@@ -1,5 +1,5 @@
 # mVision
-Matlab GUIs for educational purposes showing how typical Computer Vision techniques work through GUIs.
+Matlab GUIs for educational purposes showing how typical Computer Vision techniques work through GUIs. More information about the tool: Ruiz-Sarmiento, J. R., Moreno, F. A., Monroy, J., & Gonzalez-Jimenez, J. (2018, March). [mVision, a toolbox for computer vision courses](http://mapir.isa.uma.es/papersrepo/2018/2018-raul-INTED-mVision.pdf). In The 12th annual International Technology, Education and Development Conference (INTED2018).
 
 Author: Jose Raul Ruiz Sarmiento
 
